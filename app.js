@@ -44,7 +44,7 @@ app.use(
     secret: "your_super_secret_key",
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 
 app.get("/", async (req, res) => {
@@ -90,7 +90,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/news", (req, res) =>
-  res.render("pages/news", { activePage: "news" })
+  res.render("pages/news", { activePage: "news" }),
 );
 
 app.get("/epl", async (req, res) => {
@@ -106,11 +106,11 @@ app.get("/epl", async (req, res) => {
     ]);
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Premier League"]
+      ["Premier League"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Premier League"]
+      ["Premier League"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -145,11 +145,11 @@ app.get("/laliga", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["La Liga"]
+      ["La Liga"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["La Liga"]
+      ["La Liga"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -184,11 +184,11 @@ app.get("/calcio", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Serie A"]
+      ["Serie A"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Serie A"]
+      ["Serie A"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -222,11 +222,11 @@ app.get("/bundesliga", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Bundesliga"]
+      ["Bundesliga"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Bundesliga"]
+      ["Bundesliga"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -260,11 +260,11 @@ app.get("/ligue1", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Ligue 1"]
+      ["Ligue 1"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Ligue 1"]
+      ["Ligue 1"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -298,11 +298,11 @@ app.get("/ucl", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Champions League"]
+      ["Champions League"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Champions League"]
+      ["Champions League"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -336,11 +336,11 @@ app.get("/uel", async (req, res) => {
 
     const [hattricks] = await db.query(
       "SELECT * FROM hattricks WHERE league = ?",
-      ["Europa League"]
+      ["Europa League"],
     );
     const [freekicks] = await db.query(
       "SELECT * FROM freekicks WHERE league = ?",
-      ["Europa League"]
+      ["Europa League"],
     );
 
     const [keepers] = await db.query("SELECT * FROM keepers WHERE league = ?", [
@@ -372,7 +372,7 @@ function checkAdmin(req, res, next) {
 app.get("/admin/dashboard", checkAdmin, async (req, res) => {
   try {
     const [recentPosts] = await db.query(
-      "SELECT * FROM posts ORDER BY id DESC LIMIT 6"
+      "SELECT * FROM posts ORDER BY id DESC LIMIT 6",
     );
     res.render("Admin/dashboard", {
       title: "Admin Dashboard",
@@ -449,7 +449,7 @@ function checkAdminhighlight(req, res, next) {
 app.get("/admin/highlights", checkAdminhighlight, async (req, res) => {
   try {
     const [highlights] = await db.query(
-      "SELECT * FROM match_highlights ORDER BY created_at DESC LIMIT 5"
+      "SELECT * FROM match_highlights ORDER BY created_at DESC LIMIT 5",
     );
 
     res.render("Admin/Highlights", {
@@ -490,7 +490,7 @@ app.post(
       console.error("Error deleting highlight:", err);
       res.status(500).send("Error deleting highlight.");
     }
-  }
+  },
 );
 
 app.get("/admin/logout", (req, res) => {
@@ -502,7 +502,7 @@ app.get("/admin/logout", (req, res) => {
 app.get("/highlights", async (req, res) => {
   try {
     const [results] = await db.query(
-      "SELECT * FROM match_highlights ORDER BY created_at DESC"
+      "SELECT * FROM match_highlights ORDER BY created_at DESC",
     );
     res.render("pages/highlights", {
       highlights: results,
@@ -563,10 +563,10 @@ app.post("/send-message", async (req, res) => {
 });
 
 app.get("/contact", (req, res) =>
-  res.render("pages/contact", { activePage: "contact" })
+  res.render("pages/contact", { activePage: "contact" }),
 );
 app.get("/about", (req, res) =>
-  res.render("pages/about", { activePage: "about" })
+  res.render("pages/about", { activePage: "about" }),
 );
 
 app.get("/admin/login", (req, res) => {
